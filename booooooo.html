@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .description {
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book List</h1>
+        <input type="text" id="searchInput" placeholder="Search by title or genre" oninput="filterBooks()">
+        <ul id="bookList">
+            <li data-genre="Fantasy" data-title="Harry Potter and the Philosopher's Stone">
+                <strong>Harry Potter and the Philosopher's Stone - Fantasy</strong>
+                <p class="description">A young wizard embarks on his first year at Hogwarts School of Witchcraft and Wizardry.</p>
+            </li>
+            <li data-genre="Science Fiction" data-title="Dune">
+                <strong>Dune - Science Fiction</strong>
+                <p class="description">A noble family becomes embroiled in a war for control over the galaxy's most valuable asset.</p>
+            </li>
+            <li data-genre="Mystery" data-title="The Da Vinci Code">
+                <strong>The Da Vinci Code - Mystery</strong>
+                <p class="description">A symbologist and a cryptologist uncover secrets hidden in famous artworks.</p>
+            </li>
+            <li data-genre="Historical Fiction" data-title="The Book Thief">
+                <strong>The Book Thief - Historical Fiction</strong>
+                <p class="description">A young girl in Nazi Germany steals books to share with others, while hiding a Jewish refugee.</p>
+            </li>
+            <li data-genre="Romance" data-title="Pride and Prejudice">
+                <strong>Pride and Prejudice - Romance</strong>
+                <p class="description">Elizabeth Bennet navigates love and society in 19th century England.</p>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function filterBooks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const bookList = document.getElementById('bookList');
+            const books = bookList.getElementsByTagName('li');
+
+            for (let book of books) {
+                const title = book.getAttribute('data-title').toLowerCase();
+                const genre = book.getAttribute('data-genre').toLowerCase();
+                if (title.includes(searchInput) || genre.includes(searchInput)) {
+                    book.style.display = '';
+                } else {
+                    book.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
